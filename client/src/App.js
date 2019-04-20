@@ -20,7 +20,6 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-
 const styles = theme => ({
   root: {
     width: "100%",
@@ -32,34 +31,24 @@ const styles = theme => ({
   }
 });
 
-const customer = [
-  {
-    id: 1,
-    image: "https://placeimg.com/64/64/1",
-    name: "june",
-    birthday: "941218",
-    gender: "man",
-    job: "student"
-  },
-  {
-    id: 2,
-    image: "https://placeimg.com/64/64/2",
-    name: "kim",
-    birthday: "911218",
-    gender: "man",
-    job: "student2"
-  },
-  {
-    id: 3,
-    image: "https://placeimg.com/64/64/3",
-    name: "cae",
-    birthday: "231218",
-    gender: "man",
-    job: "student3"
-  }
-];
-
 class App extends Component {
+
+  state = {
+    customer: ""
+  }
+
+  componentDidMount() {
+    this.callApi()
+    .then(res => this.setState({customer:res}))
+    .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -76,7 +65,7 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customer.map(c => {
+            {this.state.customer? this.state.customer.map(c => {
               return (
                 <Customer
                   key={c.id}
@@ -88,7 +77,7 @@ class App extends Component {
                   job={c.job}
                 />
               );
-            })}
+            }): ""}
           </TableBody>
         </Table>
       </Paper>
