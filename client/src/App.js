@@ -9,6 +9,18 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { withStyles } from "@material-ui/core/styles";
 
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -55,12 +67,12 @@ class App extends Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell>번호</TableCell>
-              <TableCell>이미지</TableCell>
-              <TableCell>이름</TableCell>
-              <TableCell>생일</TableCell>
-              <TableCell>성별</TableCell>
-              <TableCell>직업</TableCell>
+              <CustomTableCell>번호</CustomTableCell>
+              <CustomTableCell>이미지</CustomTableCell>
+              <CustomTableCell>이름</CustomTableCell>
+              <CustomTableCell>생일</CustomTableCell>
+              <CustomTableCell>성별</CustomTableCell>
+              <CustomTableCell>직업</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
