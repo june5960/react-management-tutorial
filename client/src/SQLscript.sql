@@ -1,0 +1,2 @@
+USE management;
+SELECT VERSION();
