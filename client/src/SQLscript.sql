@@ -1,2 +1,5 @@
 USE management;
-SELECT VERSION();
+
+DESC CUSTOMER;
+
+-- SELECT * FROM CUSTOMER;
